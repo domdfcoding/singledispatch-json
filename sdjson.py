@@ -127,7 +127,7 @@ from typing import Callable
 from domdf_python_tools.doctools import append_docstring_from, is_documented_by, make_sphinx_links
 
 
-def allow_unregister(func):
+def allow_unregister(func) -> Callable:
 	"""
 	Decorator to allow removal of custom encoders with ``<sdjson.encoders.unregister(<type>)``,
 	where <type> is the custom type you wish to remove the encoder for.
@@ -199,15 +199,15 @@ def dump(obj, fp, **kwargs):
 def dumps(
 		obj,
 		*,
-		skipkeys=False,
-		ensure_ascii=True,
-		check_circular=True,
-		allow_nan=True,
+		skipkeys: bool = False,
+		ensure_ascii: bool = True,
+		check_circular: bool = True,
+		allow_nan: bool = True,
 		cls=None,
 		indent=None,
 		separators=None,
 		default=None,
-		sort_keys=False,
+		sort_keys: bool = False,
 		**kw,
 		):
 	"""
