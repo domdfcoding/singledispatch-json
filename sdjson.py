@@ -96,7 +96,15 @@ TODO: This module does not currently support custom decoders, but might in the f
 #  MA 02110-1301, USA.
 #
 
+# stdlib
+import json
 # TODO: perhaps add a limit on number of decimal places for floats etc, like with pandas' jsons
+import sys
+from functools import singledispatch
+from typing import IO, Any, Callable, Dict, List, Optional, Tuple, Type, Union, overload
+
+# 3rd party
+from domdf_python_tools.doctools import append_docstring_from, is_documented_by, make_sphinx_links
 
 __all__ = [
 		"load",
@@ -118,13 +126,7 @@ __license__ = "LGPLv3+"
 __version__ = "0.2.5"
 __email__ = "dominic@davis-foster.co.uk"
 
-# stdlib
-import json
-from functools import singledispatch
-from typing import Callable
 
-# 3rd party
-from domdf_python_tools.doctools import append_docstring_from, is_documented_by, make_sphinx_links
 
 
 def allow_unregister(func) -> Callable:
@@ -179,6 +181,20 @@ encoders = _Encoders
 register_encoder = _Encoders.register  # type: ignore
 unregister_encoder = _Encoders.unregister  # type: ignore
 
+@overload
+def dump(obj: Any,
+		 fp: IO[str],
+		 *,
+		 skipkeys: bool = ...,
+		 ensure_ascii: bool = ...,
+		 check_circular: bool = ...,
+		 allow_nan: bool = ...,
+		 cls: Optional[Type[json.JSONEncoder]] = ...,
+		 indent: Union[None, int, str] = ...,
+		 separators: Optional[Tuple[str, str]] = ...,
+		 default: Optional[Callable[[Any], Any]] = ...,
+		 sort_keys: bool = ...,
+		 **kwds: Any) -> None: ...
 
 @sphinxify_json_docstring()
 @append_docstring_from(json.dump)
@@ -203,10 +219,10 @@ def dumps(
 		ensure_ascii: bool = True,
 		check_circular: bool = True,
 		allow_nan: bool = True,
-		cls=None,
-		indent=None,
-		separators=None,
-		default=None,
+		cls: Optional[Type[json.JSONEncoder]] = None,
+		indent: Union[None, int, str] = None,
+		separators: Optional[Tuple[str, str]] = None,
+		default: Optional[Callable[[Any], Any]] = None,
 		sort_keys: bool = False,
 		**kw,
 		):
@@ -235,6 +251,31 @@ def dumps(
 			).encode(obj)
 
 
+if sys.version_info >= (3, 6):
+	_LoadsString = Union[str, bytes]
+else:
+	_LoadsString = str
+@overload
+def loads(s: _LoadsString,
+		  *,
+		  cls: Optional[Type[json.JSONDecoder]] = ...,
+		  object_hook: Optional[Callable[[Dict[Any, Any]], Any]] = ...,
+		  parse_float: Optional[Callable[[str], Any]] = ...,
+		  parse_int: Optional[Callable[[str], Any]] = ...,
+		  parse_constant: Optional[Callable[[str], Any]] = ...,
+		  object_pairs_hook: Optional[Callable[[List[Tuple[Any, Any]]], Any]] = ...,
+		  **kwds: Any) -> Any: ...
+
+@overload
+def load(fp,
+		 *,
+		 cls: Optional[Type[json.JSONDecoder]] = ...,
+		 object_hook: Optional[Callable[[Dict[Any, Any]], Any]] = ...,
+		 parse_float: Optional[Callable[[str], Any]] = ...,
+		 parse_int: Optional[Callable[[str], Any]] = ...,
+		 parse_constant: Optional[Callable[[str], Any]] = ...,
+		 object_pairs_hook: Optional[Callable[[List[Tuple[Any, Any]]], Any]] = ...,
+		 **kwds: Any) -> Any: ...
 # Provide access to remaining objects from json module.
 # We have to do it this way to sort out the docstrings for sphinx without
 #  modifying the original docstrings.
