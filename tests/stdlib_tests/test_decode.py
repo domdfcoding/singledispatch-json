@@ -116,5 +116,5 @@ def test_string_with_utf8_bom() -> None:
 
 def test_negative_index() -> None:
 	d = sdjson.JSONDecoder()
-	with pytest.raises(ValueError):
+	with pytest.raises(ValueError, match="idx cannot be negative"):
 		d.raw_decode('a' * 42, -50000)

@@ -34,5 +34,5 @@ def test_allow_nan() -> None:
 			res = sdjson.loads(out)
 			assert len(res) == 1
 			assert res[0] != res[0]
-		with pytest.raises(ValueError):
+		with pytest.raises(ValueError, match="Out of range float values are not JSON compliant"):
 			sdjson.dumps([val], allow_nan=False)

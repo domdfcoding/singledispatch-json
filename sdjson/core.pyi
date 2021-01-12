@@ -2,7 +2,7 @@
 #
 #  core.pyi
 #
-#  Copyright © 2020 Dominic Davis-Foster <dominic@davis-foster.co.uk>
+#  Copyright © 2020-2021 Dominic Davis-Foster <dominic@davis-foster.co.uk>
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU Lesser General Public License as published by
@@ -37,11 +37,23 @@
 
 # stdlib
 import json
-from functools import singledispatch
 from typing import (
-	IO, Any, Callable, Dict, Iterator, List, Mapping, Optional, overload, Protocol, Tuple, Type, TypeVar,
+	IO,
+	Any,
+	Callable,
+	Dict,
+	Iterator,
+	List,
+	Mapping,
+	Optional,
+	overload,
+	Tuple,
+	Type,
+	TypeVar,
 	Union,
 	)
+
+from typing_extensions import Protocol
 
 # 3rd party
 from domdf_python_tools.doctools import append_docstring_from, is_documented_by
@@ -80,7 +92,6 @@ class SingleDispatch(Protocol):
 	def __call__(self, *args: Any, **kwargs: Any) -> _T: ...
 
 
-
 class SupportsRead(Protocol[_T_co]):
 	def read(self, __length: int = ...) -> _T_co: ...
 
@@ -110,64 +121,65 @@ class _Encoders:
 encoders = _Encoders()
 register_encoder = encoders.register
 unregister_encoder = encoders.unregister
-def dump(
 
+
+def dump(
 		obj: Any,
-		 fp: IO[str],
-		 *,
-		 skipkeys: bool = ...,
-		 ensure_ascii: bool = ...,
-		 check_circular: bool = ...,
-		 allow_nan: bool = ...,
-		 cls: Optional[Type[json.JSONEncoder]] = ...,
-		 indent: Union[None, int, str] = ...,
-		 separators: Optional[Tuple[str, str]] = ...,
-		 default: Optional[Callable[[Any], Any]] = ...,
-		 sort_keys: bool = ...,
-		 **kwargs: Any) -> None: ...
+		fp: IO[str],
+		*,
+		skipkeys: bool = ...,
+		ensure_ascii: bool = ...,
+		check_circular: bool = ...,
+		allow_nan: bool = ...,
+		cls: Optional[Type[json.JSONEncoder]] = ...,
+		indent: Union[None, int, str] = ...,
+		separators: Optional[Tuple[str, str]] = ...,
+		default: Optional[Callable[[Any], Any]] = ...,
+		sort_keys: bool = ...,
+		**kwargs: Any) -> None: ...
 
 
 def dumps(
 		obj: Any,
-		  *,
-		  skipkeys: bool = ...,
-		  ensure_ascii: bool = ...,
-		  check_circular: bool = ...,
-		  allow_nan: bool = ...,
-		  cls: Optional[Type[json.JSONEncoder]] = ...,
-		  indent: Union[None, int, str] = ...,
-		  separators: Optional[Tuple[str, str]] = ...,
-		  default: Optional[Callable[[Any], Any]] = ...,
-		  sort_keys: bool = ...,
-		  **kwargs: Any) -> str: ...
+		*,
+		skipkeys: bool = ...,
+		ensure_ascii: bool = ...,
+		check_circular: bool = ...,
+		allow_nan: bool = ...,
+		cls: Optional[Type[json.JSONEncoder]] = ...,
+		indent: Union[None, int, str] = ...,
+		separators: Optional[Tuple[str, str]] = ...,
+		default: Optional[Callable[[Any], Any]] = ...,
+		sort_keys: bool = ...,
+		**kwargs: Any) -> str: ...
 
 
 @sphinxify_json_docstring()
 @append_docstring_from(json.load)
 def loads(
 		s: _LoadsString,
-		  *,
-		  cls: Optional[Type[json.JSONDecoder]] = ...,
-		  object_hook: Optional[Callable[[Dict[Any, Any]], Any]] = ...,
-		  parse_float: Optional[Callable[[str], Any]] = ...,
-		  parse_int: Optional[Callable[[str], Any]] = ...,
-		  parse_constant: Optional[Callable[[str], Any]] = ...,
-		  object_pairs_hook: Optional[Callable[[List[Tuple[Any, Any]]], Any]] = ...,
-		  **kwargs: Any) -> Any: ...
+		*,
+		cls: Optional[Type[json.JSONDecoder]] = ...,
+		object_hook: Optional[Callable[[Dict[Any, Any]], Any]] = ...,
+		parse_float: Optional[Callable[[str], Any]] = ...,
+		parse_int: Optional[Callable[[str], Any]] = ...,
+		parse_constant: Optional[Callable[[str], Any]] = ...,
+		object_pairs_hook: Optional[Callable[[List[Tuple[Any, Any]]], Any]] = ...,
+		**kwargs: Any) -> Any: ...
 
 
 @sphinxify_json_docstring()
 @append_docstring_from(json.loads)
 def load(
 		fp: SupportsRead[_LoadsString],
-		 *,
-		 cls: Optional[Type[json.JSONDecoder]] = ...,
-		 object_hook: Optional[Callable[[Dict[Any, Any]], Any]] = ...,
-		 parse_float: Optional[Callable[[str], Any]] = ...,
-		 parse_int: Optional[Callable[[str], Any]] = ...,
-		 parse_constant: Optional[Callable[[str], Any]] = ...,
-		 object_pairs_hook: Optional[Callable[[List[Tuple[Any, Any]]], Any]] = ...,
-		 **kwargs: Any) -> Any: ...
+		*,
+		cls: Optional[Type[json.JSONDecoder]] = ...,
+		object_hook: Optional[Callable[[Dict[Any, Any]], Any]] = ...,
+		parse_float: Optional[Callable[[str], Any]] = ...,
+		parse_int: Optional[Callable[[str], Any]] = ...,
+		parse_constant: Optional[Callable[[str], Any]] = ...,
+		object_pairs_hook: Optional[Callable[[List[Tuple[Any, Any]]], Any]] = ...,
+		**kwargs: Any) -> Any: ...
 
 
 @sphinxify_json_docstring()
@@ -198,7 +210,6 @@ class JSONEncoder(json.JSONEncoder):
 	@sphinxify_json_docstring()
 	@is_documented_by(json.JSONEncoder.iterencode)
 	def iterencode(self, o: Any, _one_shot: bool = ...) -> Iterator[str]: ...
-
 
 
 @sphinxify_json_docstring()
@@ -240,13 +251,7 @@ JSONDecodeError = json.JSONDecodeError
 
 
 # Custom encoder for sdjson
-class _CustomEncoder(JSONEncoder):
-
-	def default(self, obj):
-		for type_, handler in encoders.registry.items():
-			if isinstance(obj, type_) and type_ is not object:
-				return handler(obj)
-		return super().default(obj)
+class _CustomEncoder(JSONEncoder): ...
 
 
 _default_encoder = _CustomEncoder(

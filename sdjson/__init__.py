@@ -2,7 +2,7 @@
 #
 #  __init__.py
 #
-"""
+r"""
 JSON encoder utilising functools.singledispatch to support custom encoders
 for both Python's built-in classes and user-created classes, without as much legwork.
 
@@ -72,9 +72,9 @@ decorator will replace any existing decorator for the given class.
 
 
 .. TODO:: This module does not currently support custom decoders, but might in the future.
-"""
+"""  # noqa: D400
 #
-#  Copyright © 2020 Dominic Davis-Foster <dominic@davis-foster.co.uk>
+#  Copyright © 2020-2021 Dominic Davis-Foster <dominic@davis-foster.co.uk>
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU Lesser General Public License as published by

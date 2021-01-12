@@ -4,7 +4,7 @@ import sdjson
 
 def test_parse_pass_1() -> None:
 	# from http://json.org/JSON_checker/test/pass1.json
-	JSON = r'''
+	JSON = r"""
     [
         "JSON Test Pattern pass1",
         {"object with 1 member":["array with 1 element"]},
@@ -63,7 +63,7 @@ def test_parse_pass_1() -> None:
     1e-1,
     1e00,2e+00,2e-00
     ,"rosebud"]
-    '''
+    """
 
 	# test in/out equivalence and parsing
 	res = sdjson.loads(JSON)
@@ -73,9 +73,9 @@ def test_parse_pass_1() -> None:
 
 def test_parse_pass_2() -> None:
 	# from http://json.org/JSON_checker/test/pass2.json
-	JSON = r'''
+	JSON = r"""
     [[[[[[[[[[[[[[[[[[["Not too deep"]]]]]]]]]]]]]]]]]]]
-    '''
+    """
 
 	# test in/out equivalence and parsing
 	res = sdjson.loads(JSON)
@@ -85,14 +85,14 @@ def test_parse_pass_2() -> None:
 
 def test_parse_pass_3() -> None:
 	# from http://json.org/JSON_checker/test/pass3.json
-	JSON = r'''
+	JSON = r"""
     {
         "JSON Test Pattern pass3": {
             "The outermost value": "must be an object or array.",
             "In this test": "It is an object."
         }
     }
-    '''
+    """
 
 	# test in/out equivalence and parsing
 	res = sdjson.loads(JSON)

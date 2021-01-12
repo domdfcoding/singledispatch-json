@@ -6,7 +6,7 @@
 The actual functionality.
 """
 #
-#  Copyright © 2020 Dominic Davis-Foster <dominic@davis-foster.co.uk>
+#  Copyright © 2020-2021 Dominic Davis-Foster <dominic@davis-foster.co.uk>
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU Lesser General Public License as published by
@@ -82,7 +82,7 @@ def allow_unregister(func) -> Callable:
 	"""
 	Decorator to allow removal of custom encoders with ``<sdjson.encoders.unregister(<type>)``,
 	where <type> is the custom type you wish to remove the encoder for.
-	"""
+	"""  # noqa: D400
 
 	# From https://stackoverflow.com/a/25951784/3092681
 	# Copyright © 2014 Martijn Pieters
@@ -294,17 +294,17 @@ class JSONEncoder(json.JSONEncoder):
 
 	@sphinxify_json_docstring()
 	@is_documented_by(json.JSONEncoder.default)
-	def default(self, o: Any) -> Any:
+	def default(self, o: Any) -> Any:  # noqa: D102
 		return super().default(o)
 
 	@sphinxify_json_docstring()
 	@is_documented_by(json.JSONEncoder.encode)
-	def encode(self, o: Any) -> Any:
+	def encode(self, o: Any) -> Any:  # noqa: D102
 		return super().encode(o)
 
 	@sphinxify_json_docstring()
 	@is_documented_by(json.JSONEncoder.iterencode)
-	def iterencode(self, o: Any, _one_shot: bool = False) -> Iterator[str]:
+	def iterencode(self, o: Any, _one_shot: bool = False) -> Iterator[str]:  # noqa: D102
 		return super().iterencode(o, _one_shot)
 
 
@@ -320,12 +320,12 @@ class JSONDecoder(json.JSONDecoder):
 
 	@sphinxify_json_docstring()
 	@is_documented_by(json.JSONDecoder.decode)
-	def decode(self, *args, **kwargs):
+	def decode(self, *args, **kwargs):  # noqa: D102
 		return super().decode(*args, **kwargs)
 
 	@sphinxify_json_docstring()
 	@is_documented_by(json.JSONDecoder.raw_decode)
-	def raw_decode(self, *args, **kwargs):
+	def raw_decode(self, *args, **kwargs):  # noqa: D102
 		return super().raw_decode(*args, **kwargs)
 
 
