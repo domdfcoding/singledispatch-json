@@ -1,6 +1,7 @@
 # stdlib
 import decimal
 import platform
+import re
 from collections import OrderedDict
 from io import StringIO
 
@@ -116,5 +117,11 @@ def test_string_with_utf8_bom() -> None:
 
 def test_negative_index() -> None:
 	d = sdjson.JSONDecoder()
-	with pytest.raises(ValueError, match="idx cannot be negative"):
+
+	if platform.python_implementation() == "PyPy":
+		match = re.escape("Expecting value: line 1 column -49999 (char -50000)")
+	else:
+		match = "idx cannot be negative"
+
+	with pytest.raises(ValueError, match=match):
 		d.raw_decode('a' * 42, -50000)
