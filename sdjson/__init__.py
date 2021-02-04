@@ -376,9 +376,11 @@ class JSONEncoder(json.JSONEncoder):
 
 	@sphinxify_json_docstring()
 	@is_documented_by(json.JSONEncoder.iterencode)
-	def iterencode(self,
-					o: Any,
-					_one_shot: bool = False) -> Iterator[str]:  # noqa: D102  # pragma: no cover (!CPython)
+	def iterencode(
+			self,
+			o: Any,
+			_one_shot: bool = False,
+			) -> Iterator[str]:  # noqa: D102  # pragma: no cover (!CPython)
 		return super().iterencode(o, _one_shot)
 
 

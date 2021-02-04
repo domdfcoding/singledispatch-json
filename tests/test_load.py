@@ -2,6 +2,9 @@
 Test dumping and loading some objects
 """
 
+# stdlib
+from typing import Dict
+
 # 3rd party
 import pytest
 from domdf_python_tools.paths import PathPlus
@@ -86,14 +89,16 @@ def test_write_then_read(data, expected, tmp_pathplus: PathPlus):
 
 
 @pytest.mark.xfail
-def test_dict_failure(tmp_pathplus: PathPlus) -> None:
+@pytest.mark.parametrize("dictionary", [
+		{True: False, False: True},
+		{2: 3.0, 4.0: 5, False: 1, 6: True},
+		])
+def test_dict_failure(tmp_pathplus: PathPlus, dictionary: Dict) -> None:
 	"""
 	This test will fail because the boolean dictionary keys get read back in a lowercase strings
 	"""
 
-	assert write_then_read({True: False, False: True}, tmp_pathplus) == {True: False, False: True}
-	assert write_then_read({2: 3.0, 4.0: 5, False: 1, 6: True},
-							tmp_pathplus) == {2: 3.0, 4.0: 5, False: 1, 6: True}
+	assert write_then_read(dictionary, tmp_pathplus) == dictionary
 
 
 @pytest.mark.xfail

@@ -3,6 +3,7 @@ from typing import Dict, List
 
 # 3rd party
 import pytest
+from coincidence import not_pypy
 
 # this package
 import sdjson
@@ -92,6 +93,7 @@ def test_highly_nested_objects_decoding() -> None:
 		sdjson.loads('[' * 100000 + '1' + ']' * 100000)
 
 
+@not_pypy("Breaks coverage tracing on PyPy")
 def test_highly_nested_objects_encoding() -> None:
 	# See #12051
 	l: List[List]
@@ -107,6 +109,7 @@ def test_highly_nested_objects_encoding() -> None:
 		sdjson.dumps(d)
 
 
+@not_pypy("Breaks coverage tracing on PyPy")
 def test_endless_recursion() -> None:
 	# See #12051
 	class EndlessJSONEncoder(sdjson.JSONEncoder):
