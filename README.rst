@@ -25,7 +25,7 @@ sdjson
 	* - Activity
 	  - |commits-latest| |commits-since| |maintained| |pypi-downloads|
 	* - QA
-	  - |codefactor| |actions_flake8| |actions_mypy| |pre_commit_ci|
+	  - |codefactor| |actions_flake8| |actions_mypy|
 	* - Other
 	  - |license| |language| |requires|
 
@@ -57,8 +57,8 @@ sdjson
 	:target: https://github.com/domdfcoding/singledispatch-json/actions?query=workflow%3A%22mypy%22
 	:alt: mypy status
 
-.. |requires| image:: https://requires.io/github/domdfcoding/singledispatch-json/requirements.svg?branch=master
-	:target: https://requires.io/github/domdfcoding/singledispatch-json/requirements/?branch=master
+.. |requires| image:: https://dependency-dash.herokuapp.com/github/domdfcoding/singledispatch-json/badge.svg
+	:target: https://dependency-dash.herokuapp.com/github/domdfcoding/singledispatch-json/
 	:alt: Requirements Status
 
 .. |coveralls| image:: https://img.shields.io/coveralls/github/domdfcoding/singledispatch-json/master?logo=coveralls
@@ -114,10 +114,6 @@ sdjson
 .. |pypi-downloads| image:: https://img.shields.io/pypi/dm/sdjson
 	:target: https://pypi.org/project/sdjson/
 	:alt: PyPI - Downloads
-
-.. |pre_commit_ci| image:: https://results.pre-commit.ci/badge/github/domdfcoding/singledispatch-json/master.svg
-	:target: https://results.pre-commit.ci/latest/github/domdfcoding/singledispatch-json/master
-	:alt: pre-commit.ci status
 
 .. end shields
 

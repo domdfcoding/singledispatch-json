@@ -5,6 +5,7 @@ sdjson
 .. start short_desc
 
 .. documentation-summary::
+	:meta:
 
 .. end short_desc
 
@@ -30,7 +31,7 @@ and Python's :mod:`json` module.
 		* - Activity
 		  - |commits-latest| |commits-since| |maintained| |pypi-downloads|
 		* - QA
-		  - |codefactor| |actions_flake8| |actions_mypy| |pre_commit_ci|
+		  - |codefactor| |actions_flake8| |actions_mypy|
 		* - Other
 		  - |license| |language| |requires|
 
@@ -62,7 +63,8 @@ and Python's :mod:`json` module.
 		:workflow: mypy
 		:alt: mypy status
 
-	.. |requires| requires-io-shield::
+	.. |requires| image:: https://dependency-dash.herokuapp.com/github/domdfcoding/singledispatch-json/badge.svg
+		:target: https://dependency-dash.herokuapp.com/github/domdfcoding/singledispatch-json/
 		:alt: Requirements Status
 
 	.. |coveralls| coveralls-shield::
@@ -123,9 +125,6 @@ and Python's :mod:`json` module.
 		:downloads: month
 		:alt: PyPI - Downloads
 
-	.. |pre_commit_ci| pre-commit-ci-shield::
-		:alt: pre-commit.ci status
-
 .. end shields
 
 
@@ -165,12 +164,18 @@ Installation
 	Source
 
 
+.. sidebar-links::
+	:caption: Links
+	:github:
+	:pypi: sdjson
+
+
 .. start links
 
 .. only:: html
 
 	View the :ref:`Function Index <genindex>` or browse the `Source Code <_modules/index.html>`__.
 
-	`Browse the GitHub Repository <https://github.com/domdfcoding/singledispatch-json>`__
+	:github:repo:`Browse the GitHub Repository <domdfcoding/singledispatch-json>`
 
 .. end links
