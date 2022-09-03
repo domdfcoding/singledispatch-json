@@ -63,8 +63,8 @@ and Python's :mod:`json` module.
 		:workflow: mypy
 		:alt: mypy status
 
-	.. |requires| image:: https://dependency-dash.herokuapp.com/github/domdfcoding/singledispatch-json/badge.svg
-		:target: https://dependency-dash.herokuapp.com/github/domdfcoding/singledispatch-json/
+	.. |requires| image:: https://dependency-dash.repo-helper.uk/github/domdfcoding/singledispatch-json/badge.svg
+		:target: https://dependency-dash.repo-helper.uk/github/domdfcoding/singledispatch-json/
 		:alt: Requirements Status
 
 	.. |coveralls| coveralls-shield::
