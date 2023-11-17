@@ -339,83 +339,87 @@ def dumps(
 			).encode(obj)
 
 
-# Provide access to remaining objects from json module.
-# We have to do it this way to sort out the docstrings for sphinx without
-#  modifying the original docstrings.
-@sphinxify_json_docstring()
-@append_docstring_from(json.load)
-def load(*args, **kwargs):  # pragma: no cover (!CPython)  # TODO  # noqa: MAN001,MAN002
-	"""
-	Alias of :func:`json.load`.
-	"""
+if sys.version_info < (3, 11):  # pragma: nocover (py311+)
 
-	return json.load(*args, **kwargs)
+	# Provide access to remaining objects from json module.
+	# We have to do it this way to sort out the docstrings for sphinx without
+	#  modifying the original docstrings.
+	@sphinxify_json_docstring()
+	@append_docstring_from(json.load)
+	def load(*args, **kwargs):  # pragma: no cover (!CPython)  # TODO  # noqa: MAN001,MAN002
+		"""
+		Alias of :func:`json.load`.
+		"""
 
-
-@sphinxify_json_docstring()
-@append_docstring_from(json.loads)
-def loads(*args, **kwargs):  # pragma: no cover (!CPython)  # TODO  # noqa: MAN001,MAN002
-	"""
-	Alias of :func:`json.loads`.
-	"""
-
-	return json.loads(*args, **kwargs)
-
-
-@sphinxify_json_docstring()
-@append_docstring_from(json.JSONEncoder)
-class JSONEncoder(json.JSONEncoder):
-	"""
-	Alias of :class:`json.JSONEncoder`.
-
-	.. autosummary-widths:: 31/100
-	"""
-
-	def __init__(self, *args, **kwargs):
-		super().__init__(*args, **kwargs)
+		return json.load(*args, **kwargs)
 
 	@sphinxify_json_docstring()
-	@is_documented_by(json.JSONEncoder.default)
-	def default(self, o: Any) -> Any:  # noqa: D102
-		return super().default(o)
+	@append_docstring_from(json.loads)
+	def loads(*args, **kwargs):  # pragma: no cover (!CPython)  # TODO  # noqa: MAN001,MAN002
+		"""
+		Alias of :func:`json.loads`.
+		"""
+
+		return json.loads(*args, **kwargs)
 
 	@sphinxify_json_docstring()
-	@is_documented_by(json.JSONEncoder.encode)
-	def encode(self, o: Any) -> Any:  # noqa: D102
-		return super().encode(o)
+	@append_docstring_from(json.JSONEncoder)
+	class JSONEncoder(json.JSONEncoder):
+		"""
+		Alias of :class:`json.JSONEncoder`.
+
+		.. autosummary-widths:: 31/100
+		"""
+
+		def __init__(self, *args, **kwargs):
+			super().__init__(*args, **kwargs)
+
+		@sphinxify_json_docstring()
+		@is_documented_by(json.JSONEncoder.default)
+		def default(self, o: Any) -> Any:  # noqa: D102
+			return super().default(o)
+
+		@sphinxify_json_docstring()
+		@is_documented_by(json.JSONEncoder.encode)
+		def encode(self, o: Any) -> Any:  # noqa: D102
+			return super().encode(o)
+
+		@sphinxify_json_docstring()
+		@is_documented_by(json.JSONEncoder.iterencode)
+		def iterencode(  # noqa: D102
+				self,
+				o: Any,
+				_one_shot: bool = False,
+				) -> Iterator[str]:  # pragma: no cover (!CPython)
+			return super().iterencode(o, _one_shot)
 
 	@sphinxify_json_docstring()
-	@is_documented_by(json.JSONEncoder.iterencode)
-	def iterencode(  # noqa: D102
-			self,
-			o: Any,
-			_one_shot: bool = False,
-			) -> Iterator[str]:  # pragma: no cover (!CPython)
-		return super().iterencode(o, _one_shot)
+	@append_docstring_from(json.JSONDecoder)
+	class JSONDecoder(json.JSONDecoder):  # pragma: no cover (!CPython)  # TODO
+		"""
+		Alias of :class:`json.JSONDecoder`.
 
+		.. autosummary-widths:: 35/100
+		"""
 
-@sphinxify_json_docstring()
-@append_docstring_from(json.JSONDecoder)
-class JSONDecoder(json.JSONDecoder):  # pragma: no cover (!CPython)  # TODO
-	"""
-	Alias of :class:`json.JSONDecoder`.
+		def __init__(self, *args, **kwargs):
+			super().__init__(*args, **kwargs)
 
-	.. autosummary-widths:: 35/100
-	"""
+		@sphinxify_json_docstring()
+		@is_documented_by(json.JSONDecoder.decode)
+		def decode(self, *args, **kwargs):  # noqa: MAN002,D102
+			return super().decode(*args, **kwargs)
 
-	def __init__(self, *args, **kwargs):
-		super().__init__(*args, **kwargs)
+		@sphinxify_json_docstring()
+		@is_documented_by(json.JSONDecoder.raw_decode)
+		def raw_decode(self, *args, **kwargs):  # noqa: MAN002,D102
+			return super().raw_decode(*args, **kwargs)
 
-	@sphinxify_json_docstring()
-	@is_documented_by(json.JSONDecoder.decode)
-	def decode(self, *args, **kwargs):  # noqa: MAN002,D102
-		return super().decode(*args, **kwargs)
-
-	@sphinxify_json_docstring()
-	@is_documented_by(json.JSONDecoder.raw_decode)
-	def raw_decode(self, *args, **kwargs):  # noqa: MAN002,D102
-		return super().raw_decode(*args, **kwargs)
-
+else:  # pragma: nocover (<py311)
+	load = json.load
+	loads = json.loads
+	JSONEncoder = json.JSONEncoder
+	JSONDecoder = json.JSONDecoder
 
 JSONDecodeError = json.JSONDecodeError
 
