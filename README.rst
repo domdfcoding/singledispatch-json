@@ -100,7 +100,7 @@ sdjson
 .. |language| image:: https://img.shields.io/github/languages/top/domdfcoding/singledispatch-json
 	:alt: GitHub top language
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/domdfcoding/singledispatch-json/v0.4.0
+.. |commits-since| image:: https://img.shields.io/github/commits-since/domdfcoding/singledispatch-json/v0.5.0
 	:target: https://github.com/domdfcoding/singledispatch-json/pulse
 	:alt: GitHub commits since tagged version
 
