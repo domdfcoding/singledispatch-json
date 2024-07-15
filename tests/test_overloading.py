@@ -3,6 +3,7 @@ import re
 from decimal import Decimal
 
 # 3rd party
+import pytest
 from coincidence import check_file_regression
 from pytest_regressions.file_regression import FileRegressionFixture
 
@@ -10,6 +11,7 @@ from pytest_regressions.file_regression import FileRegressionFixture
 import sdjson
 
 
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_overloading(file_regression: FileRegressionFixture) -> None:
 
 	try:
@@ -34,7 +36,7 @@ def test_overloading(file_regression: FileRegressionFixture) -> None:
 
 	finally:
 		# Cleanup
-		sdjson.encoders.unregister(Decimal)
+		sdjson.encoders.unregister(Decimal, True)
 
 
 def remove_memaddr(string: str) -> str:

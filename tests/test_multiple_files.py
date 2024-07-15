@@ -6,10 +6,14 @@ Test registering custom encoders in multiple files
 from decimal import Decimal
 from fractions import Fraction
 
+# 3rd party
+import pytest
+
 # this package
 import sdjson
 
 
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_multiple_files() -> None:
 
 	# this package
@@ -22,5 +26,5 @@ def test_multiple_files() -> None:
 	assert sdjson.dumps(Fraction(2, 3)) == '"2/3"'
 
 	# Cleanup
-	sdjson.encoders.unregister(Decimal)
-	sdjson.encoders.unregister(Fraction)
+	sdjson.encoders.unregister(Decimal, True)
+	sdjson.encoders.unregister(Fraction, True)

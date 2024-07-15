@@ -16,6 +16,7 @@ import pytz  # type: ignore[import]
 import sdjson
 
 
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_decimal_float() -> None:
 	# Create and register a custom encoder for Decimal that turns it into a float
 	@sdjson.encoders.register(Decimal)
@@ -28,6 +29,7 @@ def test_decimal_float() -> None:
 	sdjson.encoders.unregister(Decimal)
 
 
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_decimal_str() -> None:
 	# Create and register a custom encoder for Decimal that turns it into a str
 	@sdjson.encoders.register(Decimal)
@@ -40,6 +42,7 @@ def test_decimal_str() -> None:
 	sdjson.encoders.unregister(Decimal)
 
 
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_fraction_float() -> None:
 	# Create and register a custom encoder for Fraction that turns it into a float
 	@sdjson.encoders.register(Fraction)
@@ -56,6 +59,7 @@ def test_fraction_float() -> None:
 	sdjson.encoders.unregister(Fraction)
 
 
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_fraction_str() -> None:
 	# Create and register a custom encoder for Fraction that turns it into a str
 	@sdjson.encoders.register(Fraction)
@@ -72,6 +76,7 @@ def test_fraction_str() -> None:
 	sdjson.encoders.unregister(Fraction)
 
 
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_datetime_float() -> None:
 	# Create and register a custom encoder for datetime that turns it into a float
 	@sdjson.encoders.register(datetime)
@@ -84,6 +89,7 @@ def test_datetime_float() -> None:
 	sdjson.encoders.unregister(datetime)
 
 
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_datetime_str() -> None:
 	# Create and register a custom encoder for datetime that turns it into a str
 	@sdjson.encoders.register(datetime)
@@ -96,6 +102,7 @@ def test_datetime_str() -> None:
 	sdjson.encoders.unregister(datetime)
 
 
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_datetime_tuple() -> None:
 	# Create and register a custom encoder for datetime that turns it into a timetuple
 	@sdjson.encoders.register(datetime)
@@ -108,6 +115,7 @@ def test_datetime_tuple() -> None:
 	sdjson.encoders.unregister(datetime)
 
 
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_timedelta_float() -> None:
 	# Create and register a custom encoder for timedelta that turns it into a float
 	@sdjson.encoders.register(timedelta)
@@ -135,6 +143,7 @@ def test_timedelta_float() -> None:
 # 	sdjson.encoders.unregister(date)
 
 
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_date_str() -> None:
 	# Create and register a custom encoder for date that turns it into a str
 	@sdjson.encoders.register(date)
@@ -147,6 +156,7 @@ def test_date_str() -> None:
 	sdjson.encoders.unregister(date)
 
 
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_date_tuple() -> None:
 	# Create and register a custom encoder for date that turns it into a timetuple
 	@sdjson.encoders.register(date)
@@ -159,6 +169,7 @@ def test_date_tuple() -> None:
 	sdjson.encoders.unregister(date)
 
 
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_time_float() -> None:
 	# Create and register a custom encoder for time that turns it into a float
 	@sdjson.encoders.register(time)
@@ -174,6 +185,7 @@ def test_time_float() -> None:
 # Create and register a custom encoder for date that turns it into a float
 
 
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_time_str() -> None:
 	# Create and register a custom encoder for time that turns it into a str
 	@sdjson.encoders.register(time)
@@ -186,6 +198,7 @@ def test_time_str() -> None:
 	sdjson.encoders.unregister(time)
 
 
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_time_tuple() -> None:
 	# Create and register a custom encoder for time that turns it into a timetuple
 	@sdjson.encoders.register(time)
@@ -199,6 +212,7 @@ def test_time_tuple() -> None:
 
 
 @pytest.mark.xfail(reason="Not implemented in CPython yet.")
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_named_tuple() -> None:
 	# Ref: https://bugs.python.org/issue30343
 	#      https://github.com/python/cpython/pull/1558
@@ -219,4 +233,4 @@ def test_named_tuple() -> None:
 
 	finally:
 		# Cleanup
-		sdjson.encoders.unregister(Student)
+		sdjson.encoders.unregister(Student, True)

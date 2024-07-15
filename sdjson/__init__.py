@@ -255,7 +255,7 @@ class _Encoders:
 
 		return None
 
-	def unregister(self, cls: Type) -> None:
+	def unregister(self, cls: Type, allow_missing: bool = False) -> None:
 		"""
 		Unregister the handler for the given type.
 
@@ -264,8 +264,12 @@ class _Encoders:
 			unregister_encoder(int)
 
 		:param cls:
+		:param allow_missing: Do not raise a :exc:`KeyError` if no handler is found.
+			Useful for try/finally cleanup.
 
 		:raise KeyError: if no handler is found.
+
+		.. versionchanged:: 0.5.0  Added ``allow_missing`` argument.
 		"""
 
 		if cls in self.registry:
@@ -273,7 +277,8 @@ class _Encoders:
 		elif cls in self._protocol_registry:
 			del self._protocol_registry[cls]
 		else:
-			raise KeyError
+			if not allow_missing:
+				raise KeyError
 
 
 encoders = _Encoders()

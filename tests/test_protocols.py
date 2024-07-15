@@ -52,6 +52,7 @@ class SupportsBizBaz(Protocol):
 		pass
 
 
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_protocols() -> None:
 
 	class Integer:

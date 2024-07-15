@@ -8,6 +8,7 @@ import pytest
 import sdjson
 
 
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_unregister() -> None:
 	# Create and register a custom encoder for Decimal that turns it into a string
 	@sdjson.encoders.register(Decimal)

@@ -6,6 +6,7 @@ Test custom encoder for a custom class
 from abc import ABC
 
 # 3rd party
+import pytest
 from domdf_python_tools.paths import TemporaryPathPlus
 
 # this package
@@ -124,6 +125,7 @@ class Shop(CustomClassBase):
 				)
 
 
+@pytest.mark.usefixtures("monkeypatch_sdjson")
 def test_custom_class() -> None:
 	# Create and register the custom encoders
 	# In this example we create three separate encoders even though all three classes
