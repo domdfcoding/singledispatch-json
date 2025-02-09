@@ -162,11 +162,21 @@ def test_truncated_input(data: str, msg: str, idx: int):
 				('{"spam":[}', unexpected_right_brace, 9),
 				("[42:", unexpected_colon, 3),
 				('[42 "spam"', "Unexpected '\"' when decoding array" if PYPY else "Expecting ',' delimiter", 4),
-				("[42,]", "Unexpected ']'" if PYPY else "Expecting value", 4),
+				(
+						"[42,]",
+						"Unexpected ']'" if PYPY else "Illegal trailing comma before end of array"
+						if sys.version_info >= (3, 13) else "Expecting value",
+						3 if sys.version_info >= (3, 13) else 4
+						),
 				('{"spam":[42}', "Unexpected '}' when decoding array" if PYPY else "Expecting ',' delimiter", 11),
 				('["]', "Unterminated string starting at", 1),
 				('["spam":', unexpected_colon, 7),
-				('["spam",]', "Unexpected ']'" if PYPY else "Expecting value", 8),
+				(
+						'["spam",]',
+						"Unexpected ']'" if PYPY else "Illegal trailing comma before end of array"
+						if sys.version_info >= (3, 13) else "Expecting value",
+						7 if sys.version_info >= (3, 13) else 8
+						),
 				("{:", property_name_string, 1),
 				("{,", property_name_string, 1),
 				("{42", property_name_string, 1),
@@ -182,7 +192,12 @@ def test_truncated_input(data: str, msg: str, idx: int):
 						11
 						),
 				('[{"spam":42]', "Unexpected ']' when decoding object" if PYPY else "Expecting ',' delimiter", 11),
-				('{"spam":42,}', property_name_string, 11),
+				(
+						'{"spam":42,}',
+						"Illegal trailing comma before end of object"
+						if sys.version_info >= (3, 13) else property_name_string,
+						10 if sys.version_info >= (3, 13) else 11
+						),
 				]
 		)
 def test_unexpected_data(data: str, msg: str, idx: int):
