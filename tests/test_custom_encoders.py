@@ -10,7 +10,7 @@ from fractions import Fraction
 
 # 3rd party
 import pytest
-import pytz  # type: ignore[import]
+import pytz  # type: ignore[import-untyped]
 
 # this package
 import sdjson

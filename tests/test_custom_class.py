@@ -45,7 +45,7 @@ class Character(CustomClassBase):
 		return f"Character: {self.name} ({self.actor})"
 
 	@property
-	def __dict__(self):
+	def __dict__(self):  # type: ignore[override]
 		return dict(name=self.name, actor=self.actor, armed=self.armed)
 
 
@@ -63,7 +63,7 @@ class Cheese(CustomClassBase):
 		return f"Cheese({self.name})"
 
 	@property
-	def __dict__(self):
+	def __dict__(self):  # type: ignore[override]
 		return dict(
 				name=self.name,
 				properties=self.properties,
@@ -112,7 +112,7 @@ class Shop(CustomClassBase):
 		return f"{self.name} ({'Open' if self.is_open else 'closed'})"
 
 	@property
-	def __dict__(self):
+	def __dict__(self):  # type: ignore[override]
 		return dict(
 				name=self.name,
 				address=self.address,

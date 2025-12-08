@@ -87,9 +87,9 @@ def test_dict_keys() -> None:
 	j: float
 	n: float
 
-	s, b, h, r = BigNum  # type: ignore[misc]
-	e, p, t = FloatNum  # type: ignore[misc]
-	i, j, n = WierdNum  # type: ignore[misc]
+	s, b, h, r = BigNum
+	e, p, t = FloatNum
+	i, j, n = WierdNum
 
 	d = {
 			s: "tiny",
