@@ -125,7 +125,7 @@ def dump(
 		separators: Optional[Tuple[str, str]] = ...,
 		default: Optional[Callable[[Any], Any]] = ...,
 		sort_keys: bool = ...,
-		**kwargs: Any
+		**kwargs: Any,
 		) -> None: ...
 
 def dumps(
@@ -140,7 +140,7 @@ def dumps(
 		separators: Optional[Tuple[str, str]] = ...,
 		default: Optional[Callable[[Any], Any]] = ...,
 		sort_keys: bool = ...,
-		**kwargs: Any
+		**kwargs: Any,
 		) -> str: ...
 
 def loads(
@@ -152,7 +152,7 @@ def loads(
 		parse_int: Optional[Callable[[str], Any]] = ...,
 		parse_constant: Optional[Callable[[str], Any]] = ...,
 		object_pairs_hook: Optional[Callable[[List[Tuple[Any, Any]]], Any]] = ...,
-		**kwargs: Any
+		**kwargs: Any,
 		) -> Any: ...
 
 def load(
@@ -164,7 +164,7 @@ def load(
 		parse_int: Optional[Callable[[str], Any]] = ...,
 		parse_constant: Optional[Callable[[str], Any]] = ...,
 		object_pairs_hook: Optional[Callable[[List[Tuple[Any, Any]]], Any]] = ...,
-		**kwargs: Any
+		**kwargs: Any,
 		) -> Any: ...
 
 class JSONEncoder(json.JSONEncoder):
@@ -179,7 +179,7 @@ class JSONEncoder(json.JSONEncoder):
 			sort_keys: bool = ...,
 			indent: Optional[int] = ...,
 			separators: Optional[Tuple[str, str]] = ...,
-			default: Optional[Callable[..., Any]] = ...
+			default: Optional[Callable[..., Any]] = ...,
 			) -> None: ...
 
 	def default(self, o: Any) -> Any: ...
@@ -207,7 +207,7 @@ class JSONDecoder(json.JSONDecoder):
 			parse_int: Optional[Callable[[str], Any]] = ...,
 			parse_constant: Optional[Callable[[str], Any]] = ...,
 			strict: bool = ...,
-			object_pairs_hook: Optional[Callable[[List[Tuple[str, Any]]], Any]] = ...
+			object_pairs_hook: Optional[Callable[[List[Tuple[str, Any]]], Any]] = ...,
 			) -> None: ...
 
 	def decode(self, s: str, _w: Callable[..., Any] = ...) -> Any: ...  # _w is undocumented

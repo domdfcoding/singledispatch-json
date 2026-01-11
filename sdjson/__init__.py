@@ -340,7 +340,7 @@ def dumps(
 			separators=separators,
 			default=default,
 			sort_keys=sort_keys,
-			**kwargs
+			**kwargs,
 			).encode(obj)
 
 

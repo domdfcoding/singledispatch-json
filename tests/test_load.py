@@ -36,14 +36,17 @@ def test_none(tmp_pathplus: PathPlus) -> None:
 	assert str(write_then_read(None, tmp_pathplus)) == "None"  # Double check with string
 
 
-@pytest.mark.parametrize("value", [
-		1,
-		1234,
-		12340000000,
-		-1,
-		-1234,
-		-12340000000,
-		])
+@pytest.mark.parametrize(
+		"value",
+		[
+				1,
+				1234,
+				12340000000,
+				-1,
+				-1234,
+				-12340000000,
+				],
+		)
 def test_int(value: int, tmp_pathplus: PathPlus) -> None:
 	assert write_then_read(value, tmp_pathplus) == value
 
@@ -63,7 +66,7 @@ def test_int(value: int, tmp_pathplus: PathPlus) -> None:
 				-1.005,
 				-1234.005,
 				-12340000000.005,
-				]
+				],
 		)
 def test_float(value: float, tmp_pathplus: PathPlus) -> None:
 	assert write_then_read(value, tmp_pathplus) == value
@@ -82,17 +85,20 @@ example_dict = {"True": True, "False": False, "String": "spam", "Integer": 1, "F
 				("egg sausage and bacon", "egg sausage and bacon"),
 				("egg and spam", "egg and spam"),
 				("egg bacon and spam", "egg bacon and spam"),
-				]
+				],
 		)
 def test_write_then_read(data, expected, tmp_pathplus: PathPlus):
 	assert write_then_read(data, tmp_pathplus) == expected
 
 
 @pytest.mark.xfail
-@pytest.mark.parametrize("dictionary", [
-		{True: False, False: True},
-		{2: 3.0, 4.0: 5, False: 1, 6: True},
-		])
+@pytest.mark.parametrize(
+		"dictionary",
+		[
+				{True: False, False: True},
+				{2: 3.0, 4.0: 5, False: 1, 6: True},
+				],
+		)
 def test_dict_failure(tmp_pathplus: PathPlus, dictionary: Dict) -> None:
 	"""
 	This test will fail because the boolean dictionary keys get read back in a lowercase strings

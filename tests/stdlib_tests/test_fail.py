@@ -145,12 +145,12 @@ def __test_invalid_input(data: str, msg: str, idx: int) -> None:
 				(
 						'{"spam":42',
 						"Unterminated object starting at" if PYPY else "Expecting ',' delimiter",
-						1 if PYPY else 10
+						1 if PYPY else 10,
 						),
 				('{"spam":42,', property_name_string, 11),
 				('"', "Unterminated string starting at", 0),
 				('"spam', "Unterminated string starting at", 0),
-				]
+				],
 		)
 def test_truncated_input(data: str, msg: str, idx: int):
 	__test_invalid_input(data, msg, idx)
@@ -165,13 +165,19 @@ def test_truncated_input(data: str, msg: str, idx: int):
 				('[42 "spam"', "Unexpected '\"' when decoding array" if PYPY else "Expecting ',' delimiter", 4),
 				pytest.param("[42,]", "Illegal trailing comma before end of array", 3, marks=min_version((3, 13))),
 				pytest.param(
-						"[42,]", "Unexpected ']'" if PYPY else "Expecting value", 4, marks=max_version((3, 12))
+						"[42,]",
+						"Unexpected ']'" if PYPY else "Expecting value",
+						4,
+						marks=max_version((3, 12)),
 						),
 				('{"spam":[42}', "Unexpected '}' when decoding array" if PYPY else "Expecting ',' delimiter", 11),
 				('["]', "Unterminated string starting at", 1),
 				('["spam":', unexpected_colon, 7),
 				pytest.param(
-						'["spam",]', "Illegal trailing comma before end of array", 7, marks=min_version((3, 13))
+						'["spam",]',
+						"Illegal trailing comma before end of array",
+						7,
+						marks=min_version((3, 13)),
 						),
 				pytest.
 				param('["spam",]', "Unexpected ']'" if PYPY else "Expecting value", 8, marks=max_version((3, 12))),
@@ -187,17 +193,17 @@ def test_truncated_input(data: str, msg: str, idx: int):
 				(
 						'{"spam":42 "ham"',
 						"Unexpected '\"' when decoding object" if PYPY else "Expecting ',' delimiter",
-						11
+						11,
 						),
 				('[{"spam":42]', "Unexpected ']' when decoding object" if PYPY else "Expecting ',' delimiter", 11),
 				pytest.param(
 						'{"spam":42,}',
 						"Illegal trailing comma before end of object",
 						10,
-						marks=min_version((3, 13))
+						marks=min_version((3, 13)),
 						),
 				pytest.param('{"spam":42,}', property_name_string, 11, marks=max_version((3, 12))),
-				]
+				],
 		)
 def test_unexpected_data(data: str, msg: str, idx: int):
 	__test_invalid_input(data, msg, idx)
@@ -212,19 +218,20 @@ def test_unexpected_data(data: str, msg: str, idx: int):
 				("{},{}", "Extra data", 2),
 				('42,"spam"', "Extra data", 2),
 				('"spam",42', "Extra data", 6),
-				]
+				],
 		)
 def test_extra_data(data: str, msg: str, idx: int):
 	__test_invalid_input(data, msg, idx)
 
 
 @pytest.mark.parametrize(
-		"data, line, col, idx", [
+		"data, line, col, idx",
+		[
 				('!', 1, 1, 0),
 				(" !", 1, 2, 1),
 				("\n!", 2, 1, 1),
 				("\n  \n\n     !", 4, 6, 10),
-				]
+				],
 		)
 def test_linecol(data: str, line: int, col: int, idx: int):
 

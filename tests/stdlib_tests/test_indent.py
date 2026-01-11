@@ -39,7 +39,7 @@ def test_indent() -> None:
 	\t\t"field": "yes",
 	\t\t"morefield": false
 	\t}
-	]"""
+	]""",
 			)
 
 	d1 = sdjson.dumps(h)

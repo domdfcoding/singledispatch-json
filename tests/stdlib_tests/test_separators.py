@@ -40,7 +40,7 @@ def test_separators() -> None:
         "field" : "yes" ,
         "morefield" : false
       }
-    ]"""
+    ]""",
 			)
 
 	d1 = sdjson.dumps(h)
