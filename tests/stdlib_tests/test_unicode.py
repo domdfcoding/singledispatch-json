@@ -75,7 +75,7 @@ def test_bytes_decode() -> None:
 		("utf-16le", codecs.BOM_UTF16_LE),
 		("utf-32be", codecs.BOM_UTF32_BE),
 		("utf-32le", codecs.BOM_UTF32_LE),
-		]:
+	]:
 		data = ["aµ€𝄠"]
 		encoded = sdjson.dumps(data).encode(encoding)
 		assert sdjson.loads(bom + encoded) == data

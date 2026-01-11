@@ -108,11 +108,11 @@ sdjson
 	:target: https://github.com/domdfcoding/singledispatch-json/commit/master
 	:alt: GitHub last commit
 
-.. |maintained| image:: https://img.shields.io/maintenance/yes/2025
+.. |maintained| image:: https://img.shields.io/maintenance/yes/2026
 	:alt: Maintenance
 
 .. |pypi-downloads| image:: https://img.shields.io/pypi/dm/sdjson
-	:target: https://pypi.org/project/sdjson/
+	:target: https://pypistats.org/packages/sdjson
 	:alt: PyPI - Downloads
 
 .. end shields

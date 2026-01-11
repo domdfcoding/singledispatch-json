@@ -37,7 +37,7 @@ def test_dump_skipkeys() -> None:
 		[
 				({True: False, False: True}, '{"false": true, "true": false}'),
 				({2: 3.0, 4.0: 5, False: 1, 6: True}, '{"false": 1, "2": 3.0, "4.0": 5, "6": true}'),
-				]
+				],
 		)
 def test_encode_truefalse(data: Set, expects: str):
 	assert sdjson.dumps(data, sort_keys=True) == expects
