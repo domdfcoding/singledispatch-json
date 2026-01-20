@@ -133,10 +133,12 @@ Installation
 
 .. start installation
 
-.. installation:: sdjson
+.. installation:: singledispatch-json
 	:pypi:
+	:pypi-name: sdjson
 	:github:
 	:anaconda:
+	:conda-name: sdjson
 	:conda-channels: conda-forge, domdfcoding
 
 .. end installation
