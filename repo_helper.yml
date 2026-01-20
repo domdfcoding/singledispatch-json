@@ -12,9 +12,8 @@ short_desc: "Custom JSON Encoder for Python utilising functools.singledispatch t
 use_whey: True
 min_coverage: 100
 standalone_contrib_guide: true
-
-conda_channels:
- - conda-forge
+on_conda_forge: true
+enable_conda: false
 
 # Versions to run tests for
 python_versions:

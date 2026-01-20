@@ -85,12 +85,12 @@ sdjson
 	:target: https://pypi.org/project/sdjson/
 	:alt: PyPI - Wheel
 
-.. |conda-version| image:: https://img.shields.io/conda/v/domdfcoding/sdjson?logo=anaconda
-	:target: https://anaconda.org/domdfcoding/sdjson
+.. |conda-version| image:: https://img.shields.io/conda/v/conda-forge/sdjson?logo=anaconda
+	:target: https://anaconda.org/conda-forge/sdjson
 	:alt: Conda - Package Version
 
-.. |conda-platform| image:: https://img.shields.io/conda/pn/domdfcoding/sdjson?label=conda%7Cplatform
-	:target: https://anaconda.org/domdfcoding/sdjson
+.. |conda-platform| image:: https://img.shields.io/conda/pn/conda-forge/sdjson?label=conda%7Cplatform
+	:target: https://anaconda.org/conda-forge/sdjson
 	:alt: Conda - Platform
 
 .. |license| image:: https://img.shields.io/github/license/domdfcoding/singledispatch-json

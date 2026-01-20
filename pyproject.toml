@@ -36,10 +36,6 @@ python-implementations = [ "CPython", "PyPy",]
 platforms = [ "Windows", "macOS", "Linux",]
 license-key = "MIT"
 
-[tool.mkrecipe]
-conda-channels = [ "conda-forge", "domdfcoding",]
-extras = "all"
-
 [tool.sphinx-pyproject]
 github_username = "domdfcoding"
 github_repository = "singledispatch-json"
