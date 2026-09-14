@@ -213,8 +213,10 @@ class _Encoders:
 			def bytes_encoder(obj):
 				return obj.decode("UTF-8")
 
+
 			def int_encoder(obj):
 				return int(obj)
+
 
 			register_encoder(int, int_encoder)
 
