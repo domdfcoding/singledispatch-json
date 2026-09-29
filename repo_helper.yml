@@ -44,6 +44,3 @@ extra_sphinx_extensions:
 
 sphinx_conf_epilogue:
  - nitpicky = True
-
-tox_unmanaged:
- - flake8

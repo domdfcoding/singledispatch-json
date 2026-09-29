@@ -293,6 +293,7 @@ unregister_encoder = encoders.unregister
 def dump(obj: Any, fp: IO, **kwargs: Any):  # TODO  # noqa: MAN001,MAN002
 	"""
 	Serialize custom Python classes to JSON.
+
 	Custom classes can be registered using the ``@encoders.register(<type>)`` decorator.
 	"""
 
